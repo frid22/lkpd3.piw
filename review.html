@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Minuman Coffee Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 184, 117);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .reviews {
+            margin-top: 30px;
+        }
+        .review {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+        }
+        .review h3 {
+            margin: 0;
+        }
+        .review p {
+            margin: 5px 0;
+        }
+        .rating {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Review Minuman Coffee Shop</h1>
+        <form id="review-form">
+            <div class="form-group">
+                <label for="drink-name">Nama Minuman:</label>
+                <input type="text" id="drink-name" name="drink-name" placeholder="Misalnya: Cappuccino" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating (1-5):</label>
+                <select id="rating" name="rating" required>
+                    <option value="">Pilih Rating</option>
+                    <option value="1">1 - Sangat Buruk</option>
+                    <option value="2">2 - Buruk</option>
+                    <option value="3">3 - Cukup</option>
+                    <option value="4">4 - Baik</option>
+                    <option value="5">5 - Sangat Baik</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="review-text">Ulasan:</label>
+                <textarea id="review-text" name="review-text" rows="4" placeholder="Tulis ulasan Anda di sini..." required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Kirim Ulasan</button>
+            </div>
+        </form>
+
+        <div class="reviews">
+            <h2>Ulasan Terbaru</h2>
+            <div class="review">
+                <h3>Nama Minuman: Cappuccino</h3>
+                <p class="rating">Rating: 4</p>
+                <p>Ulasan: Enak sekali! Saya sangat menyukai rasa cappuccino ini. Sangat recommended!</p>
+            </div>
+            <div class="review">
+                <h3>Nama Minuman: Latte</h3>
+                <p class="rating">Rating: 3</p>
+                <p>Ulasan: Latte ini cukup baik, tapi saya rasa bisa lebih manis sedikit.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('review-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir standar
+
+            // Ambil data dari formulir
+            const drinkName = document.getElementById('drink-name').value;
+            const rating = document.getElementById('rating').value;
+            const reviewText = document.getElementById('review-text').value;
+
+            // Buat elemen review baru
+            const reviewContainer = document.createElement('div');
+            reviewContainer.classList.add('review');
+
+            const reviewContent = `
+                <h3>Nama Minuman: ${drinkName}</h3>
+                <p class="rating">Rating: ${rating}</p>
+                <p>Ulasan: ${reviewText}</p>
+            `;
+            reviewContainer.innerHTML = reviewContent;
+
+            // Tambahkan review ke daftar ulasan
+            document.querySelector('.reviews').appendChild(reviewContainer);
+
+            // Reset formulir
+            document.getElementById('review-form').reset();
+        });
+    </script>
+</body>
+</html>

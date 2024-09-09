@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Transaksi Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 184, 117);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .payment-details {
+            display: none;
+        }
+        .payment-details.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Halaman Transaksi Pembayaran</h1>
+        <form id="payment-form">
+            <div class="form-group">
+                <label>Pilih Metode Pembayaran:</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="credit-card">Kartu Kredit</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank-transfer">Transfer Bank</option>
+                </select>
+            </div>
+
+            <!-- Kartu Kredit -->
+            <div id="credit-card-details" class="payment-details">
+                <div class="form-group">
+                    <label for="cc-number">Nomor Kartu Kredit:</label>
+                    <input type="text" id="cc-number" name="cc-number" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-group">
+                    <label for="cc-expiry">Tanggal Kadaluarsa:</label>
+                    <input type="text" id="cc-expiry" name="cc-expiry" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="cc-cvc">Kode CVC:</label>
+                    <input type="text" id="cc-cvc" name="cc-cvc" placeholder="123" required>
+                </div>
+            </div>
+
+            <!-- PayPal -->
+            <div id="paypal-details" class="payment-details">
+                <div class="form-group">
+                    <label for="paypal-email">Email PayPal:</label>
+                    <input type="email" id="paypal-email" name="paypal-email" placeholder="email@example.com" required>
+                </div>
+            </div>
+
+            <!-- Transfer Bank -->
+            <div id="bank-transfer-details" class="payment-details">
+                <div class="form-group">
+                    <label for="bank-account">Nomor Rekening Bank:</label>
+                    <input type="text" id="bank-account" name="bank-account" placeholder="123-456-789" required>
+                </div>
+                <div class="form-group">
+                    <label for="bank-name">Nama Bank:</label>
+                    <input type="text" id="bank-name" name="bank-name" placeholder="Nama Bank" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Kirim Pembayaran</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('payment-method').addEventListener('change', function() {
+            var selectedMethod = this.value;
+            document.querySelectorAll('.payment-details').forEach(function(detail) {
+                detail.classList.remove('active');
+            });
+            document.getElementById(selectedMethod + '-details').classList.add('active');
+        });
+    </script>
+</body>
+</html>

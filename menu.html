@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Coffee Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 184, 117);
+            margin: 0;
+            padding: 0;
+            color: #333;
+       
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #444;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .menu-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+        .menu-item h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #333;
+        }
+        .menu-item p {
+            font-size: 1em;
+            color: #666;
+        }
+        .menu-item .price {
+            font-size: 1.4em;
+            color: #000;
+            margin-top: 10px;
+        }
+        .menu-item button {
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .menu-item button:hover {
+            background-color: #555;
+        }
+        .cart {
+            margin-top: 40px;
+        }
+        .cart h2 {
+            font-size: 2em;
+        }
+        .cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cart ul li {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .menu-item {
+                width: 45%;
+            }
+        }
+        @media (max-width: 480px) {
+            .menu-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Menu Minuman Coffee Shop</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="menu">
+            <div class="menu-item" data-name="Coffee Blend" data-price="$3.00" data-description="A rich blend of carefully selected beans, roasted to perfection. A smooth and bold flavor.">
+                <h2>Coffee Blend</h2>
+                <div class="price">$3.00</div>
+                <p>A rich blend of carefully selected beans, roasted to perfection. A smooth and bold flavor.</p>
+                <button onclick="addToCart('Coffee Blend', '$3.00')">Beli</button>
+            </div>
+            <div class="menu-item" data-name="Green Tea" data-price="$2.50" data-description="Refreshing green tea with a hint of citrus, perfect for a calming break.">
+                <h2>Green Tea</h2>
+                <div class="price">$2.50</div>
+                <p>Refreshing green tea with a hint of citrus, perfect for a calming break.</p>
+                <button onclick="addToCart('Green Tea', '$2.50')">Beli</button>
+            </div>
+            <div class="menu-item" data-name="Hot Chocolate" data-price="$3.50" data-description="Decadent hot chocolate made with rich cocoa and topped with whipped cream.">
+                <h2>Hot Chocolate</h2>
+                <div class="price">$3.50</div>
+                <p>Decadent hot chocolate made with rich cocoa and topped with whipped cream.</p>
+                <button onclick="addToCart('Hot Chocolate', '$3.50')">Beli</button>
+            </div>
+            <div class="menu-item" data-name="Iced Coffee" data-price="$3.25" data-description="Cool and refreshing iced coffee with a touch of sweetness and cream.">
+                <h2>Iced Coffee</h2>
+                <div class="price">$3.25</div>
+                <p>Cool and refreshing iced coffee with a touch of sweetness and cream.</p>
+                <button onclick="addToCart('Iced Coffee', '$3.25')">Beli</button>
+            </div>
+            <div class="menu-item" data-name="Matcha Latte" data-price="$4.00" data-description="A creamy latte made with high-quality matcha powder and steamed milk.">
+                <h2>Matcha Latte</h2>
+                <div class="price">$4.00</div>
+                <p>A creamy latte made with high-quality matcha powder and steamed milk.</p>
+                <button onclick="addToCart('Matcha Latte', '$4.00')">Beli</button>
+            </div>
+            <div class="menu-item" data-name="Chai Tea" data-price="$2.75" data-description="A spiced tea blend with a hint of vanilla, served hot or iced.">
+                <h2>Chai Tea</h2>
+                <div class="price">$2.75</div>
+                <p>A spiced tea blend with a hint of vanilla, served hot or iced.</p>
+                <button onclick="addToCart('Chai Tea', '$2.75')">Beli</button>
+            </div>
+        </div>
+        <div class="cart">
+            <h2>Keranjang Belanja</h2>
+            <ul id="cart-items">
+                <!-- Items will be added here -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        function addToCart(name, price) {
+            const cartItems = document.getElementById('cart-items');
+            const listItem = document.createElement('li');
+            listItem.textContent = `${name} - ${price}`;
+            cartItems.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
